@@ -90,7 +90,7 @@
         {{#each huangke}} {{#quyu @index}}
         <div class="columns">
             {{/quyu}}
-            <div class="column is-4">
+            <div class="column is-3">
                 <div class="card">
                     <div class="card-content">
                         <div class="media">
@@ -124,14 +124,14 @@
         //var data = JSON.parse(d);
         //console.log(data.huangke);
         Handlebars.registerHelper('quyu', function(count, options) {
-            if (count % 3) {
+            if (count % 4) {
                 return options.inverse(this);
             } else {
                 return options.fn(this);
             }
         });
         Handlebars.registerHelper('endquyu', function(count, options) {
-            if (count % 3 == 2) {
+            if (count % 4 == 3) {
                 return options.fn(this);
             } else {
                 return options.inverse(this);
