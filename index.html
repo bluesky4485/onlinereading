@@ -119,7 +119,7 @@
     <script type="text/javascript">
     var source = $("#card-tmp").html();
     var template = Handlebars.compile(source);
-    $.get('/js/data.json', function(d) {
+    $.get('js/data.json', function(d) {
         var data = JSON.parse(d);
         console.log(data.huangke);
         Handlebars.registerHelper('quyu', function(count, options) {
