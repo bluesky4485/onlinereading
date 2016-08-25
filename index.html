@@ -123,14 +123,14 @@
         //var data = JSON.parse(d);
         //console.log(data.huangke);
         Handlebars.registerHelper('quyu', function(count, options) {
-            if (count % 4) {
+            if (count % 3) {
                 return options.inverse(this);
             } else {
                 return options.fn(this);
             }
         });
         Handlebars.registerHelper('endquyu', function(count, options) {
-            if (count % 4 == 3) {
+            if (count % 3 == 4) {
                 return options.fn(this);
             } else {
                 return options.inverse(this);
