@@ -130,7 +130,7 @@
             }
         });
         Handlebars.registerHelper('endquyu', function(count, options) {
-            if (count % 3 == 4) {
+            if (count % 3 == 2) {
                 return options.fn(this);
             } else {
                 return options.inverse(this);
