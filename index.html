@@ -93,17 +93,19 @@
             <div class="column is-3">
                 <div class="card">
                     <div class="card-content">
-                        <div class="media">
-                            <div class="media-left">
-                                <figure class="image is-32x32">
-                                    <img src="http://placehold.it/64x64" alt="Image">
-                                </figure>
+                        <a href="{{url}}">
+                            <div class="media">
+                                <div class="media-left">
+                                    <figure class="image is-32x32">
+                                        <img src="http://placehold.it/64x64" alt="Image">
+                                    </figure>
+                                </div>
+                                <div class="media-content">
+                                    <p class="title is-5">{{title}}</p>
+                                    <p class="subtitle is-6">@{{author}}</p>
+                                </div>
                             </div>
-                            <div class="media-content">
-                                <p class="title is-5"><a href="{{url}}">{{title}}</a></p>
-                                <p class="subtitle is-6">@{{author}}</p>
-                            </div>
-                        </div>
+                        </a>
                         <div class="content">
                             {{desc}} {{#if tags}} {{#each tags}}
                             <a href="#">#{{this}}</a> {{/each}} {{/if}}
