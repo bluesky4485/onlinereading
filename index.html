@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link type="text/css" rel="stylesheet" href="http://cdn.bootcss.com/bulma/0.1.2/css/bulma.css">
+    <link type="text/css" rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="hero is-primary">
+        <div class="container">
+            <nav class="nav">
+                <div class="nav-left">
+                    <a class="nav-item is-brand" href="#">
+                        <!-- <img src="image/logo.png" alt="logo logo"> -->
+                        在线电子书收集
+                    </a>
+                </div>
+                <div class="nav-center">
+                    <a class="nav-item" href="https://github.com/bluesky4485/onlinereading">
+                        <span class="icon">
+                <i class="fa fa-github"></i>
+            </span>
+                    </a>
+                    <!-- <a class="nav-item" href="#">
+                        <span class="icon">
+            <i class="fa fa-twitter"></i>
+        </span>
+                    </a> -->
+                </div>
+                <span class="nav-toggle">
+    <span></span>
+                <span></span>
+                <span></span>
+                </span>
+                <div class="nav-right nav-menu">
+                    <a class="nav-item" href="#">
+      Home
+  </a>
+                    <a class="nav-item" href="https://github.com/bluesky4485/onlinereading/blob/gh-pages/README.md">
+      Documentation
+  </a>
+                    <a class="nav-item" href="http://huangketech.com">
+      Blog
+  </a>
+                    <!--  <span class="nav-item">
+      <a class="button is-light is-outlined" >
+        <span class="icon">
+          <i class="fa fa-twitter"></i>
+      </span>
+                    <span>Tweet</span>
+                    </a>
+                    <a class="button is-primary is-inverted" href="#">
+                        <span class="icon">
+      <i class="fa fa-download"></i>
+  </span>
+                        <span>Download</span>
+                    </a>
+                    </span> -->
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="hero-body">
+        <div class="container is-fluid">
+            <div id="handbar"></div>
+            <footer class="footer">
+                <div class="container">
+                    <div class="content has-text-centered">
+                        <p>
+                            <strong>OnlineReader</strong> by <a href="http://huangketech.com">Jeremy Thomas</a>. The source code is licensed
+                            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC ANS 4.0</a>.
+                        </p>
+                        <p>
+                            <a class="icon" href="https://github.com/bluesky4485/onlinereading">
+                                <i class="fa fa-github"></i>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script type="text/javascript" src="http://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="http://cdn.bootcss.com/handlebars.js/4.0.5/handlebars.js"></script>
+    <script id="card-tmp" type="text/x-handlebars-template">
+        {{#each huangke}} {{#quyu @index}}
+        <div class="columns">
+            {{/quyu}}
+            <div class="column is-3">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-left">
+                                <figure class="image is-32x32">
+                                    <img src="http://placehold.it/64x64" alt="Image">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <p class="title is-5"><a href="{{url}}">{{title}}</a></p>
+                                <p class="subtitle is-6">@{{author}}</p>
+                            </div>
+                        </div>
+                        <div class="content">
+                            {{desc}} {{#if tags}} {{#each tags}}
+                            <a href="#">#{{this}}</a> {{/each}} {{/if}}
+                            <br>
+                            <!--                             <small>11:09 PM - 1 Jan 2016</small>
+ --></div>
+                    </div>
+                </div>
+            </div>
+            {{#endquyu @index}}
+        </div>
+        {{/endquyu}} {{/each}}
+    </script>
+    <script type="text/javascript">
+    var source = $("#card-tmp").html();
+    var template = Handlebars.compile(source);
+    $.get('js/data.json', function(d) {
+        var data = JSON.parse(d);
+        console.log(data.huangke);
+        Handlebars.registerHelper('quyu', function(count, options) {
+            if (count % 4) {
+                return options.inverse(this);
+            } else {
+                return options.fn(this);
+            }
+        });
+        Handlebars.registerHelper('endquyu', function(count, options) {
+            if (count % 4 == 3) {
+                return options.fn(this);
+            } else {
+                return options.inverse(this);
+            }
+        });
+        var html = template(data);
+        $("#handbar").html(html);
+    });
+    </script>
+</body>
+
+</html>
