@@ -120,8 +120,8 @@
     var source = $("#card-tmp").html();
     var template = Handlebars.compile(source);
     $.get('js/data.json', function(d) {
-        var data = JSON.parse(d);
-        console.log(data.huangke);
+        //var data = JSON.parse(d);
+        //console.log(data.huangke);
         Handlebars.registerHelper('quyu', function(count, options) {
             if (count % 4) {
                 return options.inverse(this);
@@ -136,7 +136,7 @@
                 return options.inverse(this);
             }
         });
-        var html = template(data);
+        var html = template(d);
         $("#handbar").html(html);
     });
     </script>
